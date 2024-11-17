@@ -1,0 +1,8 @@
+django==3.2.15
+psycopg2
+djangorestframework==3.11.2
+django-rest-swagger
+django-log-viewer
+SQLAlchemy
+drf-yasg
+django-redis
