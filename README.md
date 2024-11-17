@@ -1,78 +1,102 @@
-# puskeu_e_document
+# books_test
+
+## Database Configuration
+1. Buat database di Postgresql
+2. Di ```settings.py``` rubah HOST, NAME, USER, PASSWORD dan PORT sesuai koneksi anda 
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'book_test_db',
+        'HOST': 'localhost',
+        'USER': 'postgres',
+        'PASSWORD': 'p@ssw0rd',
+        'PORT': '5432',
+    },
+}
+```
+
+## Redis Configuration
+Redis fro Windows:
+Silahkan mengikuti langkah-langkah diwebsite ini
+```
+https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-on-windows/
+```
+
+Redis fro Linux:
+Silahkan mengikuti langkah-langkah diwebsite ini
+```
+https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-on-linux/
+```
+Note : Digunakan untuk optimasi query
 
 ## Installation
-Ubuntu:
+Ubuntu atau Bash Terminal:
 
+install virtual environment
 ```
 $ python3 -m venv venv
 ```
+Mengaftifkan virtual environment
 ```
 $ source venv/bin/activate
 ```
+Install library Python
 ```
 (venv)$ pip install -r requirements.txt
 ```
-
+Masuk ke directory App
 ```
 (venv)$ cd dash/
 ```
+migrations database
+```
+(venv) .../dash$ ./manage.py migrate
+```
+python collectstatic
+```
+(venv) .../dash$ ./manage.py collectstatic
+```
+runing Project
 ```
 (venv) .../dash$ ./manage.py runserver
 ```
-
-## Install Sentry SDK
+runing Unit Test
 ```
-pip install --upgrade sentry-sdk
-```
-
-
-## run API 
-aktifkan settings_api_prod
-
-linux 
-```
-export DJANGO_SETTINGS_MODULE=dash.settings_api_prod
+(venv) .../dash$ ./manage.py test
 ```
 
-windows 
+CMD Terminal:
+
+install virtual environment
 ```
-set DJANGO_SETTINGS_MODULE=dash.settings_api_prod
+$ python3 -m venv venv
 ```
-
-jalan kan django api local bersama front end
+Mengaftifkan virtual environment
 ```
-cd dash
-./manage.py runserver 8001
+$ venv\Scripts\activate
 ```
-anda bisa mengakses ap di localhost:8001
-
-## Type dokumen dalam QR 
-DS = disposisi QR
-ND = nota dinas QR
-SR = Surat QR 
-TR = Telegram QR
-
-## Tabel Disposisi
+Install library Python
 ```
-Disposisi adalah buku Agenda pada staff urtu, terdapat nomor agenda
+(venv)$ pip install -r requirements.txt
 ```
-
-### How to generate a Postgresql Dump/Restore from a Docker container?
-
-Use the following command from a UNIX or a Windows terminal:
-
-```bash
-# dump:
-$ docker exec -i puskeu_e_document_db_1 pg_dump -U puskeu -F t -d puskeu_e_document > /home/puskeu/puskeu_e_document.dump
-
-# drop schema:
-$ docker exec -i puskeu_e_document-db-1 psql -U puskeu -d puskeu_e_document -c "DROP SCHEMA IF EXISTS public CASCADE;"
-
-# create schema:
-$ docker exec -i puskeu_e_document-db-1 psql -U puskeu -d puskeu_e_document -c "CREATE SCHEMA public AUTHORIZATION puskeu;"
-
-# restore:
-$ docker exec -i puskeu_e_document-db-1 pg_restore -U puskeu -F t -d puskeu_e_document < /Users/user/puskeu_e_document.dump
+Masuk ke directory App
 ```
-
-upload file MAX 100MB dari nginx
+(venv)$ cd dash/
+```
+migrations database
+```
+(venv) .../dash$ python3 manage.py migrate
+```
+python collectstatic
+```
+(venv) .../dash$ python3 manage.py collectstatic
+```
+runing Project
+```
+(venv) .../dash$ python3 manage.py runserver
+```
+runing Unit Test
+```
+(venv) .../dash$ python3 manage.py test
+```
