@@ -100,6 +100,6 @@ runing Unit Test
 ```
 (venv) .../dash$ python3 manage.py test
 ```
-
-Silahkan akses ```http://localhost:8000/swagger/``` setelah running project
-NOTE : Tidak ada page home
+## NOTE
+1. Silahkan akses ```http://localhost:8000/swagger/``` setelah running project
+2. Tidak ada page home
